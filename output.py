@@ -1,4 +1,4 @@
-import book2 
+import dictionary
 import re
 from nltk.stem.snowball import SnowballStemmer
 
@@ -9,7 +9,7 @@ def find_recipes_by_user_products(user_products):
     # но имена конкретно тех рецептов, у которых все ингредиенты совпали, и также тех, у которых нужно докупить несколько продуктов
     # именно поэтому я ввожу еще int, в котором будет содержаться количество не совпадающих ингредиентов (потом мне будет удобнее выводить на экран)
 
-    for title, ingridients in book2.culinary_book.items(): #прохожусь по кулинарной книге
+    for title, ingridients in dictionary.culinary_book.items(): #прохожусь по кулинарной книге
         exists_products = set() # создаю set, в котором будут храниться те ингредиенты, которые совпали с рецептом
         ingridients_str = " ".join(ingridients) # сделала set ингредиентов одной строкой, чтобы через re.findall()) работать удобнее было
 
@@ -39,7 +39,7 @@ def print_it_on_the_screen(user_products: list[str]):
         max_count_of_missing_products = 3
 
         for title, missing_products_count in recipes_matches:
-            count_for_values = len(book2.culinary_book[title])
+            count_for_values = len(dictionary.culinary_book[title])
             if missing_products_count == 0: # 0 отсутствующих, значит мои поздравления, мы выводим на экран
                 print(f"Поздравляем, у вас есть все продукты для рецепта \"{title}\", всего ингредиентов: {count_for_values}")
             elif 0 < missing_products_count < max_count_of_missing_products:
